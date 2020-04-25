@@ -6,6 +6,7 @@ var list;
 var sortedList;
 var tickrate;
 var index;
+var end;
 
 function setup(){
 	createCanvas(windowWidth*199/200, windowHeight*195/200);
@@ -27,25 +28,32 @@ function setup(){
 	rectWidth = width/listSize;
 	rectHeightScale = height/maxHeight;
 
+	end = listSize-1;
 	frameRate(tickrate);
 }
 
 function draw(){
 	clear();
 	for(var i = 0; i < listSize; i++){
-		if(list[i] == sortedList[i])
+		if(list[i] == sortedList[i] && i > end)
 			fill(0,255,0);
+		else if(i == index)
+			fill(255,0,0);
 		else
 			fill(255,255,255);
 		rect(i*rectWidth, height - list[i]*rectHeightScale, rectWidth, list[i]*rectHeightScale);
 	}
 
 	if(!checkSame(list,sortedList)){
-			if(list[index] > list[index+1])
+			if(list[index] > list[index+1]){
 				swap(list, index, index+1);
+				if(index + 1 == end){
+					end -= 1;
+				}
+			}
 
 		index++;
-		if(index > listSize-1)
+		if(index > end)
 			index = 0;
 	}
 	
