@@ -7,9 +7,11 @@ var sortedList;
 var tickrate;
 var index;
 var end;
+var done;
 
 function setup(){
 	createCanvas(windowWidth*199/200, windowHeight*195/200);
+	done = false;
 	tickrate = 10;
 	listSize = 8;
 	index = 0;
@@ -35,7 +37,7 @@ function setup(){
 function draw(){
 	clear();
 	for(var i = 0; i < listSize; i++){
-		if(list[i] == sortedList[i] && i > end)
+		if(done || (list[i] == sortedList[i] && i > end))
 			fill(0,255,0);
 		else if(i == index)
 			fill(255,0,0);
@@ -55,6 +57,8 @@ function draw(){
 		index++;
 		if(index > end)
 			index = 0;
+	}else{
+		done = true;
 	}
 	
 }
