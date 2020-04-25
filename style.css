@@ -1,0 +1,21 @@
+button {
+		border: 1px solid black;
+		padding: 10px;
+		font-weight: bold;
+}
+div{
+	float:right;
+}
+@media only screen and (max-width: 1000px) {	
+	button {
+			width: 100%;
+			height: 33px;
+	}
+    body{
+      touch-action: manipulation;
+    }
+	
+	div{
+		float:none;
+	}
+	}
