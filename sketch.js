@@ -37,7 +37,7 @@ function setup(){
 function draw(){
 	clear();
 	for(var i = 0; i < listSize; i++){
-		if(done || (list[i] == sortedList[i] && i > end))
+		if(done || (list[i] == sortedList[i] && i >= end))
 			fill(0,255,0);
 		else if(i == index)
 			fill(255,0,0);
@@ -51,6 +51,9 @@ function draw(){
 				swap(list, index, index+1);
 				if(index + 1 == end){
 					end -= 1;
+					if(list[index] == sortedList[index]){
+						end -= 1;
+					}
 				}
 			}
 
